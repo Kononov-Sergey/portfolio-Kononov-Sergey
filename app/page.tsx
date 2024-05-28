@@ -5,7 +5,7 @@ import { semestersData } from "./data";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [dark, setIsDark] = useState(false);
+  const [dark, setIsDark] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
@@ -19,26 +19,37 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col gap-8 p-24">
-      <header className="flex items-center justify-center gap-12">
-        <Image
-          src={
-            dark ? "/prostoy-dlya-temnogo-fona.png" : "/prostoy-dlya-svetlogo-fona.png"
-          }
-          alt="logo"
-          width={200}
-          height={200}
-        />
-
+    <main className="flex min-h-screen flex-col gap-10 p-8 md:p-24">
+      <header className="flex flex-col md:flex-row items-center justify-center gap-12">
+        {dark !== undefined && (
+          <>
+            <Image
+              hidden={!dark}
+              src={"/prostoy-dlya-temnogo-fona.png"}
+              alt="logo"
+              width={200}
+              height={200}
+            />
+            <Image
+              hidden={dark}
+              src={"/prostoy-dlya-svetlogo-fona.png"}
+              alt="logo"
+              width={200}
+              height={200}
+            />
+          </>
+        )}
         <h1 className="text-4xl font-bold text-center">Портфолио Кононов Сергей ИВТ</h1>
       </header>
 
       {semestersData.map((semester) => (
-        <details className="select-none" key={semester.name}>
-          <summary className="cursor-pointer text-2xl">{semester.name}</summary>
-          <ul className="px-8 flex flex-col gap-2">
+        <details key={semester.name} className="select-none">
+          <summary className="cursor-pointer text-2xl">
+            <span className="ml-4">{semester.name}</span>
+          </summary>
+          <ul className="px-8 pt-2 flex flex-col gap-2">
             {semester.data.map((link) => (
-              <li key={link.name}>
+              <li className="transition-all hover:translate-x-2.5" key={link.name}>
                 <a
                   className="hover:underline"
                   href={link.link}
