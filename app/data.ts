@@ -144,10 +144,6 @@ const semesters4Data = [
     name: "OC",
     link: "https://disk.yandex.ru/d/ics4Pg9o_5m0Zg",
   },
-  {
-    name: "Программирование на python",
-    link: "https://disk.yandex.ru/d/Qlv6FGxry7hfmQ",
-  },
 ];
 
 const semesters5Data = [
@@ -221,10 +217,6 @@ const semesters6Data = [
   {
     name: "Основы корпоративного обучения",
     link: "https://disk.yandex.ru/d/QamtuIzKjBmJew",
-  },
-  {
-    name: "Програмирование",
-    link: "https://disk.yandex.ru/d/83AsTdvr06hirg",
   },
   {
     name: "Схемотехника",
